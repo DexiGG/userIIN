@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Модели в Django</title>
+</head>
+<body class="container">
+    <form method="POST" action="create/">
+        {% csrf_token %}
+        <p>
+            <label>Введите ИИН</label><br>
+            <input type="number" name="IIN" />
+        </p>
+        <p>
+            <label>Введите имя</label><br>
+            <input type="text" name="name" />
+        </p>
+             <p>
+            <label>Введите фамилия</label><br>
+            <input type="text" name="surname" />
+        </p>
+             <p>
+            <label>Введите отчество</label><br>
+            <input type="text" name="firstname" />
+        </p>
+             <p>
+            <label>Введите возраст</label><br>
+            <input type="number" name="age" />
+        </p>
+        <input type="submit" value="Сохранить" >
+    </form>
+    {% if people.count > 0 %}
+    <h2>Список пользователей</h2>
+    <table>
+        <tr><th>Id</th><th>ИИН</th><th>Имя</th><th>Фамилия</th><th>Отчество</th><th>Возраст</th></tr>
+        {% for person in people %}
+        <tr><td>{{ person.id }}</td><td>{{ person.IIN }}</td><td>{{ person.name }}</td><td>{{ person.surname }}</td><td>{{ person.firstname }}</td><td>{{ person.age }}</td></tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+</body>
+</html>
